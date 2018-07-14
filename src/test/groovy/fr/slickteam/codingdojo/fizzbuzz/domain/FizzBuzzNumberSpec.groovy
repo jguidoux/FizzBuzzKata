@@ -1,20 +1,18 @@
-package fr.slickteam.codingdojo.fizzbuzz
+package fr.slickteam.codingdojo.fizzbuzz.domain
 
-import fr.slickteam.codingdojo.fizzbuzz.domain.FizzBuzzAlgo
 import spock.lang.Specification
 import spock.lang.Unroll
 
-
-class FizzBuzzSpec extends Specification {
+class FizzBuzzNumberSpec extends Specification {
 
 
     @Unroll
     def "#a should return #b"() {
         given: "the number '#a"
-        def FizzBuzz = new FizzBuzzAlgo()
+        def fizzBuzz = new FizzBuzzNumber(a)
 
         when: "I launch the FizzBuzz algo"
-        def result = FizzBuzz.transform(a)
+        def result = fizzBuzz.getValue()
 
         then: "I should retrieve the number #b"
         result == b
@@ -31,8 +29,17 @@ class FizzBuzzSpec extends Specification {
         9   || "Fizz"
         10  || "Buzz"
         12  || "Fizz"
+        13  || "Fizz"
         15  || "FizzBuzz"
         16  || "16"
+        23  || "Fizz"
+        31  || "Fizz"
+        32  || "Fizz"
+        33  || "Fizz"
+        35  || "FizzBuzz"
+        50  || "Buzz"
+        51  || "FizzBuzz"
+        53  || "FizzBuzz"
         90  || "FizzBuzz"
         160 || "Buzz"
     }

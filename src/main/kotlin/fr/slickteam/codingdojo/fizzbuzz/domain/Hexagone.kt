@@ -1,9 +1,9 @@
 package fr.slickteam.codingdojo.fizzbuzz.domain
 
-class Hexagone(private val fizzBuzz: IFizzBuzz) : IFizzBuzz {
+class Hexagone(private val fizzBuzz: IFizzBuzzSequence) : IFizzBuzzSequence {
 
 
-    override fun transform(value: Int) = fizzBuzz.transform(value)
+    override fun transfrom(from: Int, to: Int) = fizzBuzz.transfrom(from, to)
 
 
 }
