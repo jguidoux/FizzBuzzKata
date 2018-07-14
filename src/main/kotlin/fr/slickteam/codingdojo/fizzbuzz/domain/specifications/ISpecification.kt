@@ -2,39 +2,39 @@ package fr.slickteam.codingdojo.fizzbuzz.domain.specifications
 
 
 
-interface ISpecification {
+interface ISpecification<T> {
 
-    fun isSatisfiedBy(value: Int): Boolean
-    fun and(specification: ISpecification): ISpecification
-    fun or(specification: ISpecification): ISpecification
+    fun isSatisfiedBy(container: T): Boolean
+    fun and(specification: ISpecification<T>): ISpecification<T>
+    fun or(specification: ISpecification<T>): ISpecification<T>
 
 }
 
-abstract class AbstractCompositeSpecification : ISpecification {
+abstract class AbstractCompositeSpecification<T> : ISpecification<T> {
 
-    override fun and(specification: ISpecification): ISpecification {
+    override fun and(specification: ISpecification<T>): ISpecification<T> {
         return AndSpecification(this, specification)
     }
 
-    override fun or(specification: ISpecification): ISpecification {
+    override fun or(specification: ISpecification<T>): ISpecification<T> {
         return OrSpecification(this, specification)
     }
 }
 
-class AndSpecification(private val leftCondition: ISpecification, private val rightCondition: ISpecification) : AbstractCompositeSpecification() {
+class AndSpecification<T>(private val leftCondition: ISpecification<T>, private val rightCondition: ISpecification<T>) : AbstractCompositeSpecification<T>() {
 
-    override fun isSatisfiedBy(value: Int) = leftCondition.isSatisfiedBy(value) && rightCondition.isSatisfiedBy(value)
-
-}
-
-class OrSpecification(private val leftCondition: ISpecification, private val rightCondition: ISpecification) : AbstractCompositeSpecification() {
-
-    override fun isSatisfiedBy(value: Int) = leftCondition.isSatisfiedBy(value) || rightCondition.isSatisfiedBy(value)
+    override fun isSatisfiedBy(container: T) = leftCondition.isSatisfiedBy(container) && rightCondition.isSatisfiedBy(container)
 
 }
 
+class OrSpecification<T>(private val leftCondition: ISpecification<T>, private val rightCondition: ISpecification<T>) : AbstractCompositeSpecification<T>() {
 
-abstract class LeafSpecification : AbstractCompositeSpecification() {
+    override fun isSatisfiedBy(container: T) = leftCondition.isSatisfiedBy(container) || rightCondition.isSatisfiedBy(container)
+
+}
+
+
+abstract class LeafSpecification<T> : AbstractCompositeSpecification<T>() {
 
 }
 
