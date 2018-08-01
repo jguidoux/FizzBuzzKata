@@ -1,7 +1,6 @@
 package fr.slickteam.codingdojo.fizzbuzz.infra
 
 import fr.slickteam.codingdojo.fizzbuzz.domain.FizzBuzzSequence
-import fr.slickteam.codingdojo.fizzbuzz.domain.Hexagone
 import fr.slickteam.codingdojo.fizzbuzz.domain.IFizzBuzzSequence
 
 
